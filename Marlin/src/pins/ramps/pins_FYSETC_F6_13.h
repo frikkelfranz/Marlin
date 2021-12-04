@@ -34,7 +34,7 @@
 #endif
 
 #define RESET_PIN                             30
-#define SPI_FLASH_CS_PIN                      83
+#define SPI_FLASH_CS                          83
 
 //
 // Servos
@@ -124,41 +124,41 @@
    * Software serial communication pins.
    * At the moment, F6 rx pins are not pc interrupt pins
    */
-  #ifndef X_SERIAL_TX_PIN
-    #define X_SERIAL_TX_PIN                   72
-  #endif
   #ifndef X_SERIAL_RX_PIN
     #define X_SERIAL_RX_PIN                   -1  // 71
   #endif
-  #ifndef Y_SERIAL_TX_PIN
-    #define Y_SERIAL_TX_PIN                   75
+  #ifndef X_SERIAL_TX_PIN
+    #define X_SERIAL_TX_PIN                   72
   #endif
   #ifndef Y_SERIAL_RX_PIN
     #define Y_SERIAL_RX_PIN                   -1  // 73
   #endif
-  #ifndef Z_SERIAL_TX_PIN
-    #define Z_SERIAL_TX_PIN                   79
+  #ifndef Y_SERIAL_TX_PIN
+    #define Y_SERIAL_TX_PIN                   75
   #endif
   #ifndef Z_SERIAL_RX_PIN
     #define Z_SERIAL_RX_PIN                   -1  // 78
   #endif
-  #ifndef E0_SERIAL_TX_PIN
-    #define E0_SERIAL_TX_PIN                  77
+  #ifndef Z_SERIAL_TX_PIN
+    #define Z_SERIAL_TX_PIN                   79
   #endif
   #ifndef E0_SERIAL_RX_PIN
     #define E0_SERIAL_RX_PIN                  -1  // 76
   #endif
-  #ifndef E1_SERIAL_TX_PIN
-    #define E1_SERIAL_TX_PIN                  81
+  #ifndef E0_SERIAL_TX_PIN
+    #define E0_SERIAL_TX_PIN                  77
   #endif
   #ifndef E1_SERIAL_RX_PIN
     #define E1_SERIAL_RX_PIN                  -1  // 80
   #endif
-  #ifndef E2_SERIAL_TX_PIN
-    #define E2_SERIAL_TX_PIN                  82
+  #ifndef E1_SERIAL_TX_PIN
+    #define E1_SERIAL_TX_PIN                  81
   #endif
   #ifndef E2_SERIAL_RX_PIN
     #define E2_SERIAL_RX_PIN                  -1  // 22
+  #endif
+  #ifndef E2_SERIAL_TX_PIN
+    #define E2_SERIAL_TX_PIN                  82
   #endif
 #endif
 
@@ -226,7 +226,7 @@
   #define DOGLCD_SCK                          17
   #define DOGLCD_A0                  LCD_PINS_DC
 
-  #undef KILL_PIN
+  #define KILL_PIN                            -1  // NC
   #define NEOPIXEL_PIN                        27
 
 #else
@@ -243,6 +243,7 @@
       #define LCD_BACKLIGHT_PIN               27
     #endif
 
+    #define KILL_PIN                          41
     #define LCD_RESET_PIN                     23  // Must be high or open for LCD to operate normally.
                                   // Seems to work best if left open.
 

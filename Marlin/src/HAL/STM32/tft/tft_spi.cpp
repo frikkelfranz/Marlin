@@ -19,10 +19,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
-
-#include "../../platforms.h"
-
-#ifdef HAL_STM32
+#if defined(ARDUINO_ARCH_STM32) && !defined(STM32GENERIC)
 
 #include "../../../inc/MarlinConfig.h"
 
@@ -91,7 +88,7 @@ void TFT_SPI::Init() {
       #elif defined(STM32F4xx)
         __HAL_RCC_DMA1_CLK_ENABLE();
         DMAtx.Instance = DMA1_Stream4;
-        DMAtx.Init.Channel = DMA_CHANNEL_0;
+        DMAtx.Init.Channel = DMA_CHANNEL_4;
       #endif
     }
   #endif
@@ -104,7 +101,7 @@ void TFT_SPI::Init() {
       #elif defined(STM32F4xx)
         __HAL_RCC_DMA1_CLK_ENABLE();
         DMAtx.Instance = DMA1_Stream5;
-        DMAtx.Init.Channel = DMA_CHANNEL_0;
+        DMAtx.Init.Channel = DMA_CHANNEL_5;
       #endif
     }
   #endif
@@ -128,20 +125,12 @@ void TFT_SPI::DataTransferBegin(uint16_t DataSize) {
   WRITE(TFT_CS_PIN, LOW);
 }
 
-#ifdef TFT_DEFAULT_DRIVER
-  #include "../../../lcd/tft_io/tft_ids.h"
-#endif
-
 uint32_t TFT_SPI::GetID() {
   uint32_t id;
   id = ReadID(LCD_READ_ID);
-  if ((id & 0xFFFF) == 0 || (id & 0xFFFF) == 0xFFFF) {
+
+  if ((id & 0xFFFF) == 0 || (id & 0xFFFF) == 0xFFFF)
     id = ReadID(LCD_READ_ID4);
-    #ifdef TFT_DEFAULT_DRIVER
-      if ((id & 0xFFFF) == 0 || (id & 0xFFFF) == 0xFFFF)
-        id = TFT_DEFAULT_DRIVER;
-    #endif
-   }
   return id;
 }
 
@@ -161,11 +150,11 @@ uint32_t TFT_SPI::ReadID(uint16_t Reg) {
     for (i = 0; i < 4; i++) {
       #if TFT_MISO_PIN != TFT_MOSI_PIN
         //if (hspi->Init.Direction == SPI_DIRECTION_2LINES) {
-          while (!__HAL_SPI_GET_FLAG(&SPIx, SPI_FLAG_TXE)) {}
+          while ((SPIx.Instance->SR & SPI_FLAG_TXE) != SPI_FLAG_TXE) {}
           SPIx.Instance->DR = 0;
         //}
       #endif
-      while (!__HAL_SPI_GET_FLAG(&SPIx, SPI_FLAG_RXNE)) {}
+      while ((SPIx.Instance->SR & SPI_FLAG_RXNE) != SPI_FLAG_RXNE) {}
       Data = (Data << 8) | SPIx.Instance->DR;
     }
 
@@ -194,9 +183,6 @@ bool TFT_SPI::isBusy() {
 }
 
 void TFT_SPI::Abort() {
-  // Wait for any running spi
-  while (!__HAL_SPI_GET_FLAG(&SPIx, SPI_FLAG_TXE)) {}
-  while ( __HAL_SPI_GET_FLAG(&SPIx, SPI_FLAG_BSY)) {}
   // First, abort any running dma
   HAL_DMA_Abort(&DMAtx);
   // DeInit objects
@@ -214,16 +200,16 @@ void TFT_SPI::Transmit(uint16_t Data) {
 
   SPIx.Instance->DR = Data;
 
-  while (!__HAL_SPI_GET_FLAG(&SPIx, SPI_FLAG_TXE)) {}
-  while ( __HAL_SPI_GET_FLAG(&SPIx, SPI_FLAG_BSY)) {}
+  while ((SPIx.Instance->SR & SPI_FLAG_TXE) != SPI_FLAG_TXE) {}
+  while ((SPIx.Instance->SR & SPI_FLAG_BSY) == SPI_FLAG_BSY) {}
 
   if (TFT_MISO_PIN != TFT_MOSI_PIN)
-    __HAL_SPI_CLEAR_OVRFLAG(&SPIx);   // Clear overrun flag in 2 Lines communication mode because received is not read
+    __HAL_SPI_CLEAR_OVRFLAG(&SPIx);   /* Clear overrun flag in 2 Lines communication mode because received is not read */
 }
 
 void TFT_SPI::TransmitDMA(uint32_t MemoryIncrease, uint16_t *Data, uint16_t Count) {
   // Wait last dma finish, to start another
-  while (isBusy()) { /* nada */ }
+  while(isBusy()) { }
 
   DMAtx.Init.MemInc = MemoryIncrease;
   HAL_DMA_Init(&DMAtx);
@@ -236,11 +222,8 @@ void TFT_SPI::TransmitDMA(uint32_t MemoryIncrease, uint16_t *Data, uint16_t Coun
   HAL_DMA_Start(&DMAtx, (uint32_t)Data, (uint32_t)&(SPIx.Instance->DR), Count);
   __HAL_SPI_ENABLE(&SPIx);
 
-  SET_BIT(SPIx.Instance->CR2, SPI_CR2_TXDMAEN);   // Enable Tx DMA Request
-
-  HAL_DMA_PollForTransfer(&DMAtx, HAL_DMA_FULL_TRANSFER, HAL_MAX_DELAY);
-  Abort();
+  SET_BIT(SPIx.Instance->CR2, SPI_CR2_TXDMAEN);   /* Enable Tx DMA Request */
 }
 
 #endif // HAS_SPI_TFT
-#endif // HAL_STM32
+#endif // ARDUINO_ARCH_STM32 && !STM32GENERIC

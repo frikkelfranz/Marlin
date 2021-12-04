@@ -37,71 +37,41 @@
 
 #include <stdint.h>
 
-//
-// Default graphical display delays
-//
-#define CPU_ST7920_DELAY_1 300
-#define CPU_ST7920_DELAY_2  40
-#define CPU_ST7920_DELAY_3 340
-
-//
-// Serial Ports
-//
 #ifdef USBCON
   #include <USBSerial.h>
-  #include "../../core/serial_hook.h"
-  typedef ForwardSerial1Class< decltype(SerialUSB) > DefaultSerial1;
-  extern DefaultSerial1 MSerial0;
 #endif
 
+// ------------------------
+// Defines
+// ------------------------
 #define _MSERIAL(X) MSerial##X
 #define MSERIAL(X) _MSERIAL(X)
 
 #if SERIAL_PORT == -1
-  #define MYSERIAL1 MSerial0
+  #define MYSERIAL0 SerialUSB
 #elif WITHIN(SERIAL_PORT, 1, 6)
-  #define MYSERIAL1 MSERIAL(SERIAL_PORT)
+  #define MYSERIAL0 MSERIAL(SERIAL_PORT)
 #else
-  #error "SERIAL_PORT must be from 1 to 6. You can also use -1 if the board supports Native USB."
+  #error "SERIAL_PORT must be -1 or from 1 to 6. Please update your configuration."
 #endif
 
 #ifdef SERIAL_PORT_2
   #if SERIAL_PORT_2 == -1
-    #define MYSERIAL2 MSerial0
+    #define MYSERIAL1 SerialUSB
   #elif WITHIN(SERIAL_PORT_2, 1, 6)
-    #define MYSERIAL2 MSERIAL(SERIAL_PORT_2)
+    #define MYSERIAL1 MSERIAL(SERIAL_PORT_2)
   #else
-    #error "SERIAL_PORT_2 must be from 1 to 6. You can also use -1 if the board supports Native USB."
-  #endif
-#endif
-
-#ifdef SERIAL_PORT_3
-  #if SERIAL_PORT_3 == -1
-    #define MYSERIAL3 MSerial0
-  #elif WITHIN(SERIAL_PORT_3, 1, 6)
-    #define MYSERIAL3 MSERIAL(SERIAL_PORT_3)
-  #else
-    #error "SERIAL_PORT_3 must be from 1 to 6. You can also use -1 if the board supports Native USB."
-  #endif
-#endif
-
-#ifdef MMU2_SERIAL_PORT
-  #if MMU2_SERIAL_PORT == -1
-    #define MMU2_SERIAL MSerial0
-  #elif WITHIN(MMU2_SERIAL_PORT, 1, 6)
-    #define MMU2_SERIAL MSERIAL(MMU2_SERIAL_PORT)
-  #else
-    #error "MMU2_SERIAL_PORT must be from 1 to 6. You can also use -1 if the board supports Native USB."
+    #error "SERIAL_PORT_2 must be -1 or from 1 to 6. Please update your configuration."
   #endif
 #endif
 
 #ifdef LCD_SERIAL_PORT
   #if LCD_SERIAL_PORT == -1
-    #define LCD_SERIAL MSerial0
+    #define LCD_SERIAL SerialUSB
   #elif WITHIN(LCD_SERIAL_PORT, 1, 6)
     #define LCD_SERIAL MSERIAL(LCD_SERIAL_PORT)
   #else
-    #error "LCD_SERIAL_PORT must be from 1 to 6. You can also use -1 if the board supports Native USB."
+    #error "LCD_SERIAL_PORT must be -1 or from 1 to 6. Please update your configuration."
   #endif
   #if HAS_DGUS_LCD
     #define SERIAL_GET_TX_BUFFER_FREE() LCD_SERIAL.availableForWrite()
@@ -125,6 +95,14 @@
 
 // On AVR this is in math.h?
 #define square(x) ((x)*(x))
+
+#ifndef strncpy_P
+  #define strncpy_P(dest, src, num) strncpy((dest), (src), (num))
+#endif
+
+// Fix bug in pgm_read_ptr
+#undef pgm_read_ptr
+#define pgm_read_ptr(addr) (*(addr))
 
 // ------------------------
 // Types
@@ -152,8 +130,6 @@ extern uint16_t HAL_adc_result;
 
 // Enable hooks into  setup for HAL
 void HAL_init();
-#define HAL_IDLETASK 1
-void HAL_idletask();
 
 // Clear reset reason
 void HAL_clear_reset_source();
@@ -161,21 +137,25 @@ void HAL_clear_reset_source();
 // Reset reason
 uint8_t HAL_get_reset_source();
 
-void HAL_reboot();
+inline void HAL_reboot() {}  // reboot the board or restart the bootloader
 
 void _delay_ms(const int delay);
 
 extern "C" char* _sbrk(int incr);
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-function"
+#if GCC_VERSION <= 50000
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wunused-function"
+#endif
 
 static inline int freeMemory() {
   volatile char top;
   return &top - reinterpret_cast<char*>(_sbrk(0));
 }
 
-#pragma GCC diagnostic pop
+#if GCC_VERSION <= 50000
+  #pragma GCC diagnostic pop
+#endif
 
 //
 // ADC
@@ -183,18 +163,13 @@ static inline int freeMemory() {
 
 #define HAL_ANALOG_SELECT(pin) pinMode(pin, INPUT)
 
-#ifdef ADC_RESOLUTION
-  #define HAL_ADC_RESOLUTION ADC_RESOLUTION
-#else
-  #define HAL_ADC_RESOLUTION 12
-#endif
+inline void HAL_adc_init() {}
 
 #define HAL_ADC_VREF         3.3
+#define HAL_ADC_RESOLUTION  10
 #define HAL_START_ADC(pin)  HAL_adc_start_conversion(pin)
 #define HAL_READ_ADC()      HAL_adc_result
 #define HAL_ADC_READY()     true
-
-inline void HAL_adc_init() { analogReadResolution(HAL_ADC_RESOLUTION); }
 
 void HAL_adc_start_conversion(const uint8_t adc_pin);
 
@@ -207,7 +182,6 @@ uint16_t HAL_adc_get_result();
 #ifdef STM32F1xx
   #define JTAG_DISABLE() AFIO_DBGAFR_CONFIG(AFIO_MAPR_SWJ_CFG_JTAGDISABLE)
   #define JTAGSWD_DISABLE() AFIO_DBGAFR_CONFIG(AFIO_MAPR_SWJ_CFG_DISABLE)
-  #define JTAGSWD_RESET() AFIO_DBGAFR_CONFIG(AFIO_MAPR_SWJ_CFG_RESET); // Reset: FULL SWD+JTAG
 #endif
 
 #define PLATFORM_M997_SUPPORT
@@ -217,7 +191,6 @@ void flashFirmware(const int16_t);
 typedef void (*systickCallback_t)(void);
 void systick_attach_callback(systickCallback_t cb);
 void HAL_SYSTICK_Callback();
-
 extern volatile uint32_t systick_uptime_millis;
 
 #define HAL_CAN_SET_PWM_FREQ   // This HAL supports PWM Frequency adjustment
