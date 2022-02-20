@@ -486,7 +486,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  *
  */
-#define TEMP_SENSOR_0 60
+#define TEMP_SENSOR_0 61
 #define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 1
 #define TEMP_SENSOR_3 0
@@ -555,7 +555,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 310
+#define HEATER_0_MAXTEMP 350
 #define HEATER_1_MAXTEMP 80
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -583,7 +583,7 @@
 
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
-#define BANG_MAX 160     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define BANG_MAX 180     // Limits current to nozzle while in bang-bang mode; 255=full current
 #define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
@@ -596,9 +596,9 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify up to one value per hotend here, according to your setup.
     // If there are fewer values, the last one applies to the remaining hotends.
-    #define DEFAULT_Kp_LIST { 15.47,   19.75, 0 }
-    #define DEFAULT_Ki_LIST { 2.20,   1.60, 0 }
-    #define DEFAULT_Kd_LIST { 27.24,  61.06, 0 }
+    #define DEFAULT_Kp_LIST { 16.37,   19.75, 0 }
+    #define DEFAULT_Ki_LIST { 2.32,   1.60, 0 }
+    #define DEFAULT_Kd_LIST { 28.82,  61.06, 0 }
   #else
     #define DEFAULT_Kp  0
     #define DEFAULT_Ki  0
@@ -931,7 +931,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 180, 150, 35, 80 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 35, 80 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -944,7 +944,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 750, 500, 280, 1300 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 300, 1300 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -959,9 +959,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          2000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1300    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1300    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1178,7 +1178,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 19, 49, -1.68 }
+#define NOZZLE_TO_PROBE_OFFSET { 19, 49, -1.59 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
