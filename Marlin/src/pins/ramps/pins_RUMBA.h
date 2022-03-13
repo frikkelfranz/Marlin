@@ -42,7 +42,7 @@
 //
 // Servos
 //
-#define SERVO0_PIN                             5
+
 #define DOGLCD_CS 38
 #define DOGLCD_A0 41
 #define DOGLCD_MOSI 51
