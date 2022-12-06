@@ -596,13 +596,13 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify up to one value per hotend here, according to your setup.
     // If there are fewer values, the last one applies to the remaining hotends.
-    #define DEFAULT_Kp_LIST { 16.37,   19.75, 0 }
-    #define DEFAULT_Ki_LIST { 2.32,   1.60, 0 }
-    #define DEFAULT_Kd_LIST { 28.82,  61.06, 0 }
+    #define DEFAULT_Kp_LIST { 46.80,   19.75, 0 }
+    #define DEFAULT_Ki_LIST { 6.35,   1.60, 0 }
+    #define DEFAULT_Kd_LIST { 86.27,  61.06, 0 }
   #else
-    #define DEFAULT_Kp  123.86
-    #define DEFAULT_Ki  22.77
-    #define DEFAULT_Kd  168.45
+    #define DEFAULT_Kp  17.63
+    #define DEFAULT_Ki  0.85
+    #define DEFAULT_Kd  244.60
   #endif
 #endif // PIDTEMP
 
@@ -1188,7 +1188,7 @@
 #define XY_PROBE_FEEDRATE (150*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST (15*60)
+#define Z_PROBE_FEEDRATE_FAST (8*60)
 
 // Feedrate (mm/min) for the "accurate" probe of each point
 #define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
@@ -1239,7 +1239,7 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-//#define MULTIPLE_PROBING 2
+//#define MULTIPLE_PROBING 3
 //#define EXTRA_PROBING    1
 
 /**
@@ -1612,7 +1612,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 6
+  #define GRID_MAX_POINTS_X 3
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1754,7 +1754,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (100*60), (100*60), (15*60) }
+#define HOMING_FEEDRATE_MM_M { (100*60), (100*60), (8*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1789,13 +1789,13 @@
  *    +-------------->X     +-------------->X     +-------------->Y
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
-//#define SKEW_CORRECTION
+#define SKEW_CORRECTION
 
 #if ENABLED(SKEW_CORRECTION)
   // Input all length measurements here:
-  #define XY_DIAG_AC 244
-  #define XY_DIAG_BD 243
-  #define XY_SIDE_AD 172.5
+  #define XY_DIAG_AC 383
+  #define XY_DIAG_BD 380
+  #define XY_SIDE_AD 257
 
   // Or, set the default skew factors directly here
   // to override the above measurements:
