@@ -583,7 +583,7 @@
 
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
-#define BANG_MAX 180     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define BANG_MAX 190     // Limits current to nozzle while in bang-bang mode; 255=full current
 #define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
@@ -596,9 +596,9 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify up to one value per hotend here, according to your setup.
     // If there are fewer values, the last one applies to the remaining hotends.
-    #define DEFAULT_Kp_LIST { 46.80,   19.75, 0 }
-    #define DEFAULT_Ki_LIST { 6.35,   1.60, 0 }
-    #define DEFAULT_Kd_LIST { 86.27,  61.06, 0 }
+    #define DEFAULT_Kp_LIST { 52.15,  19.75,  0 }
+    #define DEFAULT_Ki_LIST { 8.38,   1.60,   0 }
+    #define DEFAULT_Kd_LIST { 81.17,  61.06,  0 }
   #else
     #define DEFAULT_Kp  17.63
     #define DEFAULT_Ki  0.85
@@ -931,7 +931,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 250, 250, 30, 80 }
+#define DEFAULT_MAX_FEEDRATE          { 250, 250, 27, 80 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1612,7 +1612,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 4
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1622,7 +1622,7 @@
 
     // Beyond the probed grid, continue the implied tilt?
     // Default is to maintain the height of the nearest edge.
-    #define EXTRAPOLATE_BEYOND_GRID
+    //#define EXTRAPOLATE_BEYOND_GRID
 
     //
     // Experimental Subdivision of the grid by Catmull-Rom method.
@@ -1740,7 +1740,7 @@
 //#define MANUAL_K_HOME_POS 0
 
 /**
- * Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
+ * Use "Z Safe Homing" to avoid homing with a ZZ_SAFE_HOMING probe outside the bed area.
  *
  * - Moves the Z probe (or nozzle) to a defined XY point before Z homing.
  * - Allows Z homing only when XY positions are known and trusted.
@@ -1750,7 +1750,7 @@
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT 16  // X point for Z homing
-  #define Z_SAFE_HOMING_Y_POINT 164  // Y point for Z homing
+  #define Z_SAFE_HOMING_Y_POINT (Y_BED_SIZE/2)  // Y point for Z homing
 #endif
 
 // Homing speeds (mm/min)
