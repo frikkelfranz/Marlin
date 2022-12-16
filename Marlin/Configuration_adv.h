@@ -2325,13 +2325,13 @@
   //#define FWRETRACT_AUTORETRACT             // Override slicer retractions
   #if ENABLED(FWRETRACT_AUTORETRACT)
     #define MIN_AUTORETRACT             0.1 // (mm) Don't convert E moves under this length
-    #define MAX_AUTORETRACT            10.0 // (mm) Don't convert E moves over this length
+    #define MAX_AUTORETRACT             10.0 // (mm) Don't convert E moves over this length
   #endif
-  #define RETRACT_LENGTH                5.5   // (mm) Default retract length (positive value)
-  #define RETRACT_LENGTH_SWAP          13   // (mm) Default swap retract length (positive value)
-  #define RETRACT_FEEDRATE             80   // (mm/s) Default feedrate for retracting
+  #define RETRACT_LENGTH                0.5   // (mm) Default retract length (positive value)
+  #define RETRACT_LENGTH_SWAP           1.5   // (mm) Default swap retract length (positive value)
+  #define RETRACT_FEEDRATE              80   // (mm/s) Default feedrate for retracting
   #define RETRACT_ZRAISE                1   // (mm) Default retract Z-raise
-  #define RETRACT_RECOVER_LENGTH        0.44   // (mm) Default additional recover length (added to retract length on recover)
+  #define RETRACT_RECOVER_LENGTH        0   // (mm) Default additional recover length (added to retract length on recover)
   #define RETRACT_RECOVER_LENGTH_SWAP   0   // (mm) Default additional swap recover length (added to retract length on recover from toolchange)
   #define RETRACT_RECOVER_FEEDRATE      80   // (mm/s) Default feedrate for recovering from retraction
   #define RETRACT_RECOVER_FEEDRATE_SWAP 8   // (mm/s) Default feedrate for recovering from swap retraction
@@ -3633,7 +3633,7 @@
 /**
  * Include capabilities in M115 output
  */
-#define EXTENDED_CAPABILITIES_REPORT
+//#define EXTENDED_CAPABILITIES_REPORT
 #if ENABLED(EXTENDED_CAPABILITIES_REPORT)
   //#define M115_GEOMETRY_REPORT
 #endif
