@@ -31,11 +31,15 @@
 #define BOARD_INFO_NAME      "Lerdge S"
 #define DEFAULT_MACHINE_NAME "LERDGE"
 
-#define STEP_TIMER                             4
-#define TEMP_TIMER                             2
+#define STEP_TIMER  4
+#define TEMP_TIMER  2
 
+<<<<<<< HEAD
 // USB Flash Drive support
 #define HAS_OTG_USB_HOST_SUPPORT
+=======
+#define HAS_OTG_USB_HOST_SUPPORT                  // USB Flash Drive support
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 //
 // Servos

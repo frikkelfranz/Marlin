@@ -37,6 +37,7 @@ typedef uint64_t hal_timer_t;
 
 #define HAL_TIMER_RATE         ((SystemCoreClock) / 4)  // frequency of timers peripherals
 
+<<<<<<< HEAD
 #ifndef STEP_TIMER_NUM
   #define STEP_TIMER_NUM        0  // Timer Index for Stepper
 #endif
@@ -48,6 +49,19 @@ typedef uint64_t hal_timer_t;
 #endif
 #ifndef SYSTICK_TIMER_NUM
   #define SYSTICK_TIMER_NUM     2 // Timer Index for Systick
+=======
+#ifndef MF_TIMER_STEP
+  #define MF_TIMER_STEP         0  // Timer Index for Stepper
+#endif
+#ifndef MF_TIMER_PULSE
+  #define MF_TIMER_PULSE        MF_TIMER_STEP
+#endif
+#ifndef MF_TIMER_TEMP
+  #define MF_TIMER_TEMP         1  // Timer Index for Temperature
+#endif
+#ifndef MF_TIMER_SYSTICK
+  #define MF_TIMER_SYSTICK      2  // Timer Index for Systick
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #endif
 #define SYSTICK_TIMER_FREQUENCY 1000
 
@@ -62,12 +76,21 @@ typedef uint64_t hal_timer_t;
 #define PULSE_TIMER_PRESCALE   STEPPER_TIMER_PRESCALE
 #define PULSE_TIMER_TICKS_PER_US STEPPER_TIMER_TICKS_PER_US
 
+<<<<<<< HEAD
 #define ENABLE_STEPPER_DRIVER_INTERRUPT() HAL_timer_enable_interrupt(STEP_TIMER_NUM)
 #define DISABLE_STEPPER_DRIVER_INTERRUPT() HAL_timer_disable_interrupt(STEP_TIMER_NUM)
 #define STEPPER_ISR_ENABLED() HAL_timer_interrupt_enabled(STEP_TIMER_NUM)
 
 #define ENABLE_TEMPERATURE_INTERRUPT() HAL_timer_enable_interrupt(TEMP_TIMER_NUM)
 #define DISABLE_TEMPERATURE_INTERRUPT() HAL_timer_disable_interrupt(TEMP_TIMER_NUM)
+=======
+#define ENABLE_STEPPER_DRIVER_INTERRUPT() HAL_timer_enable_interrupt(MF_TIMER_STEP)
+#define DISABLE_STEPPER_DRIVER_INTERRUPT() HAL_timer_disable_interrupt(MF_TIMER_STEP)
+#define STEPPER_ISR_ENABLED() HAL_timer_interrupt_enabled(MF_TIMER_STEP)
+
+#define ENABLE_TEMPERATURE_INTERRUPT() HAL_timer_enable_interrupt(MF_TIMER_TEMP)
+#define DISABLE_TEMPERATURE_INTERRUPT() HAL_timer_disable_interrupt(MF_TIMER_TEMP)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 #ifndef HAL_STEP_TIMER_ISR
   #define HAL_STEP_TIMER_ISR()  extern "C" void TIMER0_IRQHandler()
@@ -87,5 +110,10 @@ void HAL_timer_enable_interrupt(const uint8_t timer_num);
 void HAL_timer_disable_interrupt(const uint8_t timer_num);
 bool HAL_timer_interrupt_enabled(const uint8_t timer_num);
 
+<<<<<<< HEAD
 #define HAL_timer_isr_prologue(TIMER_NUM)
 #define HAL_timer_isr_epilogue(TIMER_NUM)
+=======
+#define HAL_timer_isr_prologue(T)
+#define HAL_timer_isr_epilogue(T)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5

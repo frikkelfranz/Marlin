@@ -58,7 +58,11 @@ void GcodeSuite::D(const int16_t dcode) {
       break;
 
     case 10:
+<<<<<<< HEAD
       kill(PSTR("D10"), PSTR("KILL TEST"), parser.seen_test('P'));
+=======
+      kill(F("D10"), F("KILL TEST"), parser.seen_test('P'));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
       break;
 
     case 1: {

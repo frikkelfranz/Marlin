@@ -97,6 +97,7 @@ namespace Language_ru {
     LSTR MSG_HOME_OFFSET_I                  = _UxGT("Смещ. дома ") LCD_STR_I;
     LSTR MSG_HOME_OFFSET_J                  = _UxGT("Смещ. дома ") LCD_STR_J;
     LSTR MSG_HOME_OFFSET_K                  = _UxGT("Смещ. дома ") LCD_STR_K;
+<<<<<<< HEAD
   #endif
   LSTR MSG_HOME_OFFSETS_APPLIED             = _UxGT("Смещения применены");
   LSTR MSG_SET_ORIGIN                       = _UxGT("Установить ноль");
@@ -107,6 +108,18 @@ namespace Language_ru {
     LSTR MSG_LAST_VALUE_SP                  = _UxGT("Послед. знач. ");
   #endif
   #if PREHEAT_COUNT
+=======
+  #endif
+  LSTR MSG_HOME_OFFSETS_APPLIED             = _UxGT("Смещения применены");
+  LSTR MSG_SET_ORIGIN                       = _UxGT("Установить ноль");
+  LSTR MSG_SELECT_ORIGIN                    = _UxGT("Выберите ноль");
+  #if LCD_WIDTH > 21
+    LSTR MSG_LAST_VALUE_SP                  = _UxGT("Последнее знач. ");
+  #else
+    LSTR MSG_LAST_VALUE_SP                  = _UxGT("Послед. знач. ");
+  #endif
+  #if HAS_PREHEAT
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     LSTR MSG_PREHEAT_1                      = _UxGT("Преднагрев ") PREHEAT_1_LABEL;
     LSTR MSG_PREHEAT_1_H                    = _UxGT("Нагрев ") PREHEAT_1_LABEL " ~";
     LSTR MSG_PREHEAT_1_END                  = _UxGT("Нагрев ") PREHEAT_1_LABEL _UxGT(" сопло");
@@ -197,9 +210,14 @@ namespace Language_ru {
   LSTR MSG_IDEX_MODE_FULL_CTRL              = _UxGT("Полный контроль");
   LSTR MSG_IDEX_DUPE_GAP                    = _UxGT("Дублировать X-зазор");
 
+<<<<<<< HEAD
   LSTR MSG_HOTEND_OFFSET_X                  = _UxGT("2-е сопло X");
   LSTR MSG_HOTEND_OFFSET_Y                  = _UxGT("2-е сопло Y");
   LSTR MSG_HOTEND_OFFSET_Z                  = _UxGT("2-е сопло Z");
+=======
+  LSTR MSG_HOTEND_OFFSET_Z                  = _UxGT("2-е сопло Z");
+  LSTR MSG_HOTEND_OFFSET_A                  = _UxGT("2-е сопло @");
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
   LSTR MSG_UBL_DOING_G29                    = _UxGT("Выполняем G29");
   LSTR MSG_UBL_TOOLS                        = _UxGT("Инструменты UBL");

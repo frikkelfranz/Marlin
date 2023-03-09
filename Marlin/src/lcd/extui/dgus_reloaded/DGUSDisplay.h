@@ -96,7 +96,11 @@ public:
   static size_t GetFreeTxBuffer();
   static void FlushTx();
 
+<<<<<<< HEAD
   // Checks two things: Can we confirm the presence of the display and has we initiliazed it.
+=======
+  // Checks two things: Can we confirm the presence of the display and has we initialized it.
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   // (both boils down that the display answered to our chatting)
   static inline bool IsInitialized() {
     return initialized;

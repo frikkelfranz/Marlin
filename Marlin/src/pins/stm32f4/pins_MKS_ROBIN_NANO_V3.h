@@ -32,6 +32,7 @@
 
 #define BOARD_INFO_NAME "MKS Robin Nano V3"
 
+<<<<<<< HEAD
 #ifndef X_CS_PIN
   #define X_CS_PIN                          PD5
 #endif
@@ -48,6 +49,22 @@
   #define E0_CS_PIN                         PD9
 #endif
 
+=======
+#define USES_DIAG_JUMPERS
+
+#ifndef X_CS_PIN
+  #define X_CS_PIN                          PD5
+#endif
+#ifndef Y_CS_PIN
+  #define Y_CS_PIN                          PD7
+#endif
+#ifndef Z_CS_PIN
+  #define Z_CS_PIN                          PD4
+#endif
+#ifndef E0_CS_PIN
+  #define E0_CS_PIN                         PD9
+#endif
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #ifndef E1_CS_PIN
   #define E1_CS_PIN                         PD8
 #endif

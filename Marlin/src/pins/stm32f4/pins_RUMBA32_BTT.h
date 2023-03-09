@@ -22,7 +22,11 @@
 #pragma once
 
 /**
+<<<<<<< HEAD
  * No offical schematics have been found.
+=======
+ * No official schematics have been found.
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
  * But these differences where noted in https://github.com/bigtreetech/Rumba32/issues/1
  */
 
@@ -30,7 +34,11 @@
 
 #if NO_EEPROM_SELECTED
   #define I2C_EEPROM
+<<<<<<< HEAD
   #define MARLIN_EEPROM_SIZE            0x2000  // 8KB (24LC64T-I/OT)
+=======
+  #define MARLIN_EEPROM_SIZE            0x1000  // 4KB (24LC32AT-I/OT)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #endif
 
 #if ENABLED(FLASH_EEPROM_EMULATION)

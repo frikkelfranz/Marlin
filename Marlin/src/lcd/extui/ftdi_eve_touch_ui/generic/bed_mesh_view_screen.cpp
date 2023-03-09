@@ -154,11 +154,15 @@ void BedMeshViewScreen::onMeshUpdate(const int8_t x, const int8_t y, const ExtUI
 void BedMeshViewScreen::doProbe() {
   GOTO_SCREEN(BedMeshViewScreen);
   mydata.count = 0;
+<<<<<<< HEAD
   injectCommands_P(PSTR(BED_LEVELING_COMMANDS));
+=======
+  injectCommands(F(BED_LEVELING_COMMANDS));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 }
 
 void BedMeshViewScreen::show() {
-  injectCommands_P(PSTR("G29 L1"));
+  injectCommands(F("G29 L1"));
   GOTO_SCREEN(BedMeshViewScreen);
 }
 

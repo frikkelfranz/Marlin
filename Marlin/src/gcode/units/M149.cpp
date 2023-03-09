@@ -37,9 +37,15 @@ void GcodeSuite::M149() {
 }
 
 void GcodeSuite::M149_report(const bool forReplay/*=true*/) {
+<<<<<<< HEAD
   report_heading_etc(forReplay, PSTR(STR_TEMPERATURE_UNITS));
   SERIAL_ECHOPGM("  M149 ", AS_CHAR(parser.temp_units_code()), " ; Units in ");
   SERIAL_ECHOLNPGM_P(parser.temp_units_name());
+=======
+  report_heading_etc(forReplay, F(STR_TEMPERATURE_UNITS));
+  SERIAL_ECHOPGM("  M149 ", AS_CHAR(parser.temp_units_code()), " ; Units in ");
+  SERIAL_ECHOLNF(parser.temp_units_name());
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 }
 
 #endif // TEMPERATURE_UNITS_SUPPORT

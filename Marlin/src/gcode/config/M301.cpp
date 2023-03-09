@@ -79,7 +79,11 @@ void GcodeSuite::M301() {
 }
 
 void GcodeSuite::M301_report(const bool forReplay/*=true*/ E_OPTARG(const int8_t eindex/*=-1*/)) {
+<<<<<<< HEAD
   report_heading(forReplay, PSTR(STR_HOTEND_PID));
+=======
+  report_heading(forReplay, F(STR_HOTEND_PID));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   IF_DISABLED(HAS_MULTI_EXTRUDER, constexpr int8_t eindex = -1);
   HOTEND_LOOP() {
     if (e == eindex || eindex == -1) {

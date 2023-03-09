@@ -114,7 +114,11 @@ void GcodeSuite::M425() {
 }
 
 void GcodeSuite::M425_report(const bool forReplay/*=true*/) {
+<<<<<<< HEAD
   report_heading_etc(forReplay, PSTR(STR_BACKLASH_COMPENSATION));
+=======
+  report_heading_etc(forReplay, F(STR_BACKLASH_COMPENSATION));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   SERIAL_ECHOLNPGM_P(
     PSTR("  M425 F"), backlash.get_correction()
     #ifdef BACKLASH_SMOOTHING_MM

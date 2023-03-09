@@ -37,7 +37,11 @@ void GcodeSuite::M256() {
 }
 
 void GcodeSuite::M256_report(const bool forReplay/*=true*/) {
+<<<<<<< HEAD
   report_heading_etc(forReplay, PSTR(STR_LCD_BRIGHTNESS));
+=======
+  report_heading_etc(forReplay, F(STR_LCD_BRIGHTNESS));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   SERIAL_ECHOLNPGM("  M256 B", ui.brightness);
 }
 

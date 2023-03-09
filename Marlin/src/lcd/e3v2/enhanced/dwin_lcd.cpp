@@ -23,8 +23,13 @@
 /**
  * DWIN UI Enhanced implementation
  * Author: Miguel A. Risco-Castillo
+<<<<<<< HEAD
  * Version: 3.6.3
  * Date: 2021/09/08
+=======
+ * Version: 3.7.1
+ * Date: 2021/11/09
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
  */
 
 #include "../../../inc/MarlinConfigPre.h"

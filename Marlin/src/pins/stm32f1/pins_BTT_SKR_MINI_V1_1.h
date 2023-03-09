@@ -202,7 +202,11 @@
     #endif // !FYSETC_MINI_12864
 
     // Alter timing for graphical display
+<<<<<<< HEAD
     #if ENABLED(U8GLIB_ST7920)
+=======
+    #if IS_U8GLIB_ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
       #define BOARD_ST7920_DELAY_1           125
       #define BOARD_ST7920_DELAY_2           125
       #define BOARD_ST7920_DELAY_3           125

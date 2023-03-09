@@ -92,7 +92,11 @@ void GcodeSuite::M852() {
 }
 
 void GcodeSuite::M852_report(const bool forReplay/*=true*/) {
+<<<<<<< HEAD
   report_heading_etc(forReplay, PSTR(STR_SKEW_FACTOR));
+=======
+  report_heading_etc(forReplay, F(STR_SKEW_FACTOR));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   SERIAL_ECHOPAIR_F("  M851 I", planner.skew_factor.xy, 6);
   #if ENABLED(SKEW_CORRECTION_FOR_Z)
     SERIAL_ECHOPAIR_F(" J", planner.skew_factor.xz, 6);

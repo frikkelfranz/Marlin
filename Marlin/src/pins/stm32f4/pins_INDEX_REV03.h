@@ -42,6 +42,12 @@
 #define SRAM_EEPROM_EMULATION
 #define MARLIN_EEPROM_SIZE                0x2000  // 8KB
 
+<<<<<<< HEAD
+=======
+// I2C MCP3426 (16-Bit, 240SPS, dual-channel ADC)
+#define HAS_MCP3426_ADC
+
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 //
 // Servos
 //
@@ -116,6 +122,11 @@
 #define FAN2_PIN                            PE4
 #define FAN3_PIN                            PE5
 
+<<<<<<< HEAD
+=======
+#define FAN_SOFT_PWM
+
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 // Neopixel Rings
 #define NEOPIXEL_PIN                        PC7
 #define NEOPIXEL2_PIN                       PC8

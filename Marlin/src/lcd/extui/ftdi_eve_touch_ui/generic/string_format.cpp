@@ -27,8 +27,13 @@
 
 #define ROUND(val) uint16_t((val)+0.5)
 
+<<<<<<< HEAD
 #if GCC_VERSION <= 50000
   #pragma GCC diagnostic push
+=======
+#pragma GCC diagnostic push
+#if GCC_VERSION <= 50000
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #pragma GCC diagnostic ignored "-Wno-format"
 #endif
 

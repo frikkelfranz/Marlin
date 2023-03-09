@@ -419,6 +419,9 @@
 #else
   #define X_STOP_PIN X_MAX_PIN
 #endif
+#if !defined(X2_USE_ENDSTOP) && ENABLED(X_DUAL_ENDSTOPS) && PIN_EXISTS(X_STOP)
+  #define X2_USE_ENDSTOP _XSTOP_
+#endif
 
 #if HAS_Y_AXIS
   #ifdef Y_STOP_PIN
@@ -437,6 +440,7 @@
     #define Y_STOP_PIN Y_MIN_PIN
   #else
     #define Y_STOP_PIN Y_MAX_PIN
+<<<<<<< HEAD
   #endif
 #endif
 
@@ -476,6 +480,61 @@
   #elif I_HOME_TO_MIN
     #define I_STOP_PIN I_MIN_PIN
   #else
+=======
+  #endif
+  #if !defined(Y2_USE_ENDSTOP) && ENABLED(Y_DUAL_ENDSTOPS) && PIN_EXISTS(Y_STOP)
+    #define Y2_USE_ENDSTOP _YSTOP_
+  #endif
+#endif
+
+#if HAS_Z_AXIS
+  #ifdef Z_STOP_PIN
+    #if Z_HOME_TO_MIN
+      #define Z_MIN_PIN Z_STOP_PIN
+      #ifndef Z_MAX_PIN
+        #define Z_MAX_PIN -1
+      #endif
+    #else
+      #define Z_MAX_PIN Z_STOP_PIN
+      #ifndef Z_MIN_PIN
+        #define Z_MIN_PIN -1
+      #endif
+    #endif
+  #elif Z_HOME_TO_MIN
+    #define Z_STOP_PIN Z_MIN_PIN
+  #else
+    #define Z_STOP_PIN Z_MAX_PIN
+  #endif
+  #if ENABLED(Z_MULTI_ENDSTOPS) && PIN_EXISTS(Z_STOP)
+    #ifndef Z2_USE_ENDSTOP
+      #define Z2_USE_ENDSTOP _ZSTOP_
+    #endif
+    #if NUM_Z_STEPPER_DRIVERS >= 3 && !defined(Z3_USE_ENDSTOP)
+      #define Z3_USE_ENDSTOP _ZSTOP_
+    #endif
+    #if NUM_Z_STEPPER_DRIVERS >= 4 && !defined(Z4_USE_ENDSTOP)
+      #define Z4_USE_ENDSTOP _ZSTOP_
+    #endif
+  #endif
+#endif
+
+#if LINEAR_AXES >= 4
+  #ifdef I_STOP_PIN
+    #if I_HOME_TO_MIN
+      #define I_MIN_PIN I_STOP_PIN
+      #ifndef I_MAX_PIN
+        #define I_MAX_PIN -1
+      #endif
+    #else
+      #define I_MAX_PIN I_STOP_PIN
+      #ifndef I_MIN_PIN
+        #define I_MIN_PIN -1
+      #endif
+    #endif
+  #elif I_HOME_TO_MIN
+    #define I_STOP_PIN I_MIN_PIN
+  #else
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     #define I_STOP_PIN I_MAX_PIN
   #endif
 #else
@@ -579,12 +638,20 @@
 #endif
 
 // The X2 axis, if any, should be the next open extruder port
+<<<<<<< HEAD
 #if EITHER(DUAL_X_CARRIAGE, X_DUAL_STEPPER_DRIVERS) && !defined(X2_DIAG_PIN) && !defined(X2_STEP_PIN) && !PIN_EXISTS(X2_CS_PIN)
+=======
+#if HAS_X2_STEPPER && !defined(X2_DIAG_PIN) && !defined(X2_STEP_PIN) && !PIN_EXISTS(X2_CS_PIN)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #define Y2_E_INDEX INCREMENT(X2_E_INDEX)
 #else
   #define Y2_E_INDEX X2_E_INDEX
 #endif
+<<<<<<< HEAD
 #if EITHER(DUAL_X_CARRIAGE, X_DUAL_STEPPER_DRIVERS)
+=======
+#if HAS_X2_STEPPER
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #ifndef X2_STEP_PIN
     #define X2_STEP_PIN   _EPIN(X2_E_INDEX, STEP)
     #define X2_DIR_PIN    _EPIN(X2_E_INDEX, DIR)
@@ -801,7 +868,11 @@
     #endif
   #endif
   // Auto-assign pins for stallGuard sensorless homing
+<<<<<<< HEAD
   #if !defined(Z2_DIAG_PIN) && !defined(Z2_USE_ENDSTOP) && defined(Z2_STALL_SENSITIVITY) && ENABLED(Z_MULTI_ENDSTOPS) && NUM_Z_STEPPER_DRIVERS >= 2 && _PEXI(Z2_E_INDEX, DIAG)
+=======
+  #if !defined(Z2_DIAG_PIN) && !defined(Z2_USE_ENDSTOP) && defined(Z2_STALL_SENSITIVITY) && ENABLED(Z_MULTI_ENDSTOPS) && _PEXI(Z2_E_INDEX, DIAG)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     #define Z2_DIAG_PIN _EPIN(Z2_E_INDEX, DIAG)
     #if   DIAG_REMAPPED(Z2, X_MIN)
       #define Z2_USE_ENDSTOP _XMIN_
@@ -886,7 +957,11 @@
     #endif
   #endif
   // Auto-assign pins for stallGuard sensorless homing
+<<<<<<< HEAD
   #if !defined(Z3_DIAG_PIN) && !defined(Z3_USE_ENDSTOP) && defined(Z3_STALL_SENSITIVITY) && ENABLED(Z_MULTI_ENDSTOPS) && NUM_Z_STEPPER_DRIVERS >= 3 && _PEXI(Z3_E_INDEX, DIAG)
+=======
+  #if !defined(Z3_DIAG_PIN) && !defined(Z3_USE_ENDSTOP) && defined(Z3_STALL_SENSITIVITY) && ENABLED(Z_MULTI_ENDSTOPS) && _PEXI(Z3_E_INDEX, DIAG)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     #define Z3_DIAG_PIN _EPIN(Z3_E_INDEX, DIAG)
     #if   DIAG_REMAPPED(Z3, X_MIN)
       #define Z3_USE_ENDSTOP _XMIN_
@@ -971,7 +1046,11 @@
     #endif
   #endif
   // Auto-assign pins for stallGuard sensorless homing
+<<<<<<< HEAD
   #if !defined(Z4_DIAG_PIN) && !defined(Z4_USE_ENDSTOP) && defined(Z4_STALL_SENSITIVITY) && ENABLED(Z_MULTI_ENDSTOPS) && NUM_Z_STEPPER_DRIVERS >= 4 && _PEXI(Z4_E_INDEX, DIAG)
+=======
+  #if !defined(Z4_DIAG_PIN) && !defined(Z4_USE_ENDSTOP) && defined(Z4_STALL_SENSITIVITY) && ENABLED(Z_MULTI_ENDSTOPS) && _PEXI(Z4_E_INDEX, DIAG)
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     #define Z4_DIAG_PIN _EPIN(Z4_E_INDEX, DIAG)
     #if   DIAG_REMAPPED(Z4, X_MIN)
       #define Z4_USE_ENDSTOP _XMIN_
@@ -1366,7 +1445,11 @@
 //
 // Default DOGLCD SPI delays
 //
+<<<<<<< HEAD
 #if DISABLED(U8GLIB_ST7920)
+=======
+#if !IS_U8GLIB_ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #undef ST7920_DELAY_1
   #undef ST7920_DELAY_2
   #undef ST7920_DELAY_3

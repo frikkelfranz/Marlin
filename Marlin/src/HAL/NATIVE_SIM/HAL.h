@@ -133,10 +133,21 @@ void HAL_adc_enable_channel(const uint8_t ch);
 void HAL_adc_start_conversion(const uint8_t ch);
 uint16_t HAL_adc_get_result();
 
+<<<<<<< HEAD
+=======
+// PWM
+inline void set_pwm_duty(const pin_t pin, const uint16_t v, const uint16_t=255, const bool=false) { analogWrite(pin, v); }
+
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 // Reset source
 inline void HAL_clear_reset_source(void) {}
 inline uint8_t HAL_get_reset_source(void) { return RST_POWER_ON; }
 
+<<<<<<< HEAD
+=======
+void HAL_reboot();
+
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 /* ---------------- Delay in cycles */
 
 #define DELAY_CYCLES(x) Kernel::delayCycles(x)

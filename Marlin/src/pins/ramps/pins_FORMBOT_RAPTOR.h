@@ -119,6 +119,7 @@
   #define TEMP_0_CS_PIN                       66  // Don't use 53 if using Display/SD card
 #else
   #define TEMP_0_CS_PIN                       66  // Don't use 49 (SD_DETECT_PIN)
+<<<<<<< HEAD
 #endif
 
 //
@@ -136,6 +137,8 @@
   #else
     #define IS_RAMPS_EFF
   #endif
+=======
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #endif
 
 //

@@ -32,7 +32,11 @@
 #define BOARD_NO_NATIVE_USB
 
 // Avoid conflict with TIMER_SERVO when using the STM32 HAL
+<<<<<<< HEAD
 #define TEMP_TIMER                             5
+=======
+#define TEMP_TIMER  5
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 //
 // EEPROM

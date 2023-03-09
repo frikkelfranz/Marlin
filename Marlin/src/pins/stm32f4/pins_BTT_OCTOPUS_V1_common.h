@@ -23,17 +23,28 @@
 
 #include "env_validate.h"
 
+<<<<<<< HEAD
+=======
+#define HAS_OTG_USB_HOST_SUPPORT                  // USB Flash Drive support
+#define USES_DIAG_JUMPERS
+
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 // Onboard I2C EEPROM
 #define I2C_EEPROM
 #define MARLIN_EEPROM_SIZE                0x8000  // 32KB (24C32A)
 #define I2C_SCL_PIN                         PB8
 #define I2C_SDA_PIN                         PB9
 
+<<<<<<< HEAD
 // USB Flash Drive support
 #define HAS_OTG_USB_HOST_SUPPORT
 
 // Avoid conflict with TIMER_TONE
 #define STEP_TIMER                            10
+=======
+// Avoid conflict with TIMER_TONE
+#define STEP_TIMER 10
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 //
 // Servos
@@ -169,6 +180,7 @@
 #endif
 
 //
+<<<<<<< HEAD
 // NeoPixel LED
 //
 #ifndef NEOPIXEL_PIN
@@ -176,6 +188,8 @@
 #endif
 
 //
+=======
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 // Steppers
 //
 #define X_STEP_PIN                          PF13  // MOTOR 0
@@ -500,7 +514,11 @@
 #endif  // HAS_WIRED_LCD
 
 // Alter timing for graphical display
+<<<<<<< HEAD
 #if ENABLED(U8GLIB_ST7920)
+=======
+#if IS_U8GLIB_ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #define BOARD_ST7920_DELAY_1               120
   #define BOARD_ST7920_DELAY_2                80
   #define BOARD_ST7920_DELAY_3               580
@@ -525,6 +543,16 @@
 #endif
 
 //
+<<<<<<< HEAD
+=======
+// NeoPixel LED
+//
+#ifndef NEOPIXEL_PIN
+  #define NEOPIXEL_PIN                      PB0
+#endif
+
+//
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 // WIFI
 //
 

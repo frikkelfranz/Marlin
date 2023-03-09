@@ -73,7 +73,11 @@
 #define TEMP_BED_PIN                           6
 
 #if HAS_WIRED_LCD
+<<<<<<< HEAD
   #if ENABLED(U8GLIB_ST7920)                      // SPI GLCD 12864 ST7920
+=======
+  #if IS_U8GLIB_ST7920                      // SPI GLCD 12864 ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     #define LCD_PINS_RS                       30
     #define LCD_PINS_ENABLE                   20
     #define LCD_PINS_D4                       25

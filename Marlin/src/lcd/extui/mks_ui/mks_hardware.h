@@ -21,6 +21,10 @@
  */
 #pragma once
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:Marlin/src/lcd/extui/mks_ui/mks_hardware.h
+=======
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #include "../../../inc/MarlinConfigPre.h"
 
 #include <lvgl.h>
@@ -36,6 +40,30 @@
 #endif
 
 // String display and assets
+<<<<<<< HEAD
 void disp_string(uint16_t x, uint16_t y, const char * string, uint16_t charColor, uint16_t bkColor);
 void disp_assets_update();
 void disp_assets_update_progress(const char *msg);
+========
+/**
+ * Greek (Cyprus)
+ *
+ * LCD Menu Messages
+ * See also https://marlinfw.org/docs/development/lcd_language.html
+ */
+
+#include "language_el.h"
+
+namespace Language_el_CY {
+  using namespace Language_el; // Inherit undefined strings from Greek (or English)
+
+  constexpr uint8_t CHARSIZE              = 2;
+  LSTR LANGUAGE                           = _UxGT("Greek (Cyprus)");
+}
+>>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5:Marlin/src/lcd/language/language_el_CY.h
+=======
+void disp_string(uint16_t x, uint16_t y, const char * cstr, uint16_t charColor, uint16_t bkColor);
+void disp_string(uint16_t x, uint16_t y, FSTR_P const fstr, uint16_t charColor, uint16_t bkColor);
+void disp_assets_update();
+void disp_assets_update_progress(FSTR_P const msg);
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5

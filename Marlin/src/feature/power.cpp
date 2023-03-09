@@ -82,7 +82,11 @@ void Power::power_on() {
   TERN_(HAS_TRINAMIC_CONFIG, safe_delay(PSU_POWERUP_DELAY));
 
   #ifdef PSU_POWERUP_GCODE
+<<<<<<< HEAD
     GcodeSuite::process_subcommands_now_P(PSTR(PSU_POWERUP_GCODE));
+=======
+    gcode.process_subcommands_now(F(PSU_POWERUP_GCODE));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #endif
 }
 
@@ -95,7 +99,11 @@ void Power::power_off() {
   if (!psu_on) return;
 
   #ifdef PSU_POWEROFF_GCODE
+<<<<<<< HEAD
     GcodeSuite::process_subcommands_now_P(PSTR(PSU_POWEROFF_GCODE));
+=======
+    gcode.process_subcommands_now(F(PSU_POWEROFF_GCODE));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #endif
 
   #if ENABLED(PS_OFF_SOUND)

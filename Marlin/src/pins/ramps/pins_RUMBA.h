@@ -43,6 +43,10 @@
 // Servos
 //
 #define SERVO0_PIN                             5
+#define DOGLCD_CS 38
+#define DOGLCD_A0 41
+#define DOGLCD_MOSI 51
+#define DOGLCD_SCK 52
 
 //
 // Limit Switches
@@ -50,9 +54,12 @@
 #ifndef X_MIN_PIN
   #define X_MIN_PIN                           37
 #endif
+<<<<<<< HEAD
 #ifndef X_MIN_PIN
   #define X_MIN_PIN                           37
 #endif
+=======
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #ifndef X_MAX_PIN
   #define X_MAX_PIN                           36
 #endif
@@ -73,7 +80,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                     32
+  //#define Z_MIN_PROBE_PIN                     32
 #endif
 
 //
@@ -122,16 +129,16 @@
 
 #ifndef TEMP_1_PIN
   #if TEMP_SENSOR_1 == -1
-    #define TEMP_1_PIN                         5  // Analog Input (connector *K2* on RUMBA thermocouple ADD ON is used)
+    #define TEMP_1_PIN                         7  // Analog Input (connector *K2* on RUMBA thermocouple ADD ON is used)
   #else
-    #define TEMP_1_PIN                        14  // Analog Input (default connector for thermistor *T1* on rumba board is used)
+    #define TEMP_1_PIN                        13  // Analog Input (default connector for thermistor *T1* on rumba board is used)
   #endif
 #endif
 
 #if TEMP_SENSOR_2 == -1
-  #define TEMP_2_PIN                           7  // Analog Input (connector *K3* on RUMBA thermocouple ADD ON is used <-- this can't be used when TEMP_SENSOR_BED is defined as thermocouple)
+  #define TEMP_2_PIN                           5  // Analog Input (connector *K3* on RUMBA thermocouple ADD ON is used <-- this can't be used when TEMP_SENSOR_BED is defined as thermocouple)
 #else
-  #define TEMP_2_PIN                          13  // Analog Input (default connector for thermistor *T2* on rumba board is used)
+  #define TEMP_2_PIN                          14  // Analog Input (default connector for thermistor *T2* on rumba board is used)
 #endif
 
 // Optional for extruder 4 or chamber:
@@ -151,8 +158,8 @@
 // Heaters / Fans
 //
 #define HEATER_0_PIN                           2
-#define HEATER_1_PIN                           3
-#define HEATER_2_PIN                           6
+#define HEATER_1_PIN                           6
+#define HEATER_2_PIN                           3
 #define HEATER_3_PIN                           8
 #define HEATER_BED_PIN                         9
 

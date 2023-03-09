@@ -42,7 +42,11 @@
  * version was tagged.
  */
 #ifndef STRING_DISTRIBUTION_DATE
+<<<<<<< HEAD
   #define STRING_DISTRIBUTION_DATE "2021-09-03"
+=======
+  #define STRING_DISTRIBUTION_DATE "2021-12-08"
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #endif
 
 /**
@@ -52,7 +56,11 @@
  * to alert users to major changes.
  */
 
+<<<<<<< HEAD
 #define MARLIN_HEX_VERSION 02000902
+=======
+#define MARLIN_HEX_VERSION 02000903
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #ifndef REQUIRED_CONFIGURATION_H_VERSION
   #define REQUIRED_CONFIGURATION_H_VERSION MARLIN_HEX_VERSION
 #endif

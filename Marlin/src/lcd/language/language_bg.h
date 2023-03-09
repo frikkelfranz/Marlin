@@ -45,7 +45,11 @@ namespace Language_bg {
   LSTR MSG_AUTO_HOME                      = _UxGT("Паркиране");
   LSTR MSG_SET_HOME_OFFSETS               = _UxGT("Задай Начало");
   LSTR MSG_SET_ORIGIN                     = _UxGT("Изходна точка");
+<<<<<<< HEAD
   #if PREHEAT_COUNT
+=======
+  #if HAS_PREHEAT
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     LSTR MSG_PREHEAT_1                    = _UxGT("Подгряване ") PREHEAT_1_LABEL;
     LSTR MSG_PREHEAT_1_H                  = _UxGT("Подгряване ") PREHEAT_1_LABEL " ~";
     LSTR MSG_PREHEAT_1_END                = _UxGT("Подгряване ") PREHEAT_1_LABEL _UxGT(" Дюза");

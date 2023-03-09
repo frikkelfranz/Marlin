@@ -57,7 +57,11 @@
 
 #include "../../../inc/MarlinConfig.h"
 
+<<<<<<< HEAD
 #if ENABLED(U8GLIB_ST7920)
+=======
+#if IS_U8GLIB_ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 #include <U8glib-HAL.h>
 #include "../../shared/Delay.h"
@@ -167,5 +171,9 @@ uint8_t u8g_com_ST7920_sw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void 
   }
 #endif
 
+<<<<<<< HEAD
 #endif // U8GLIB_ST7920
+=======
+#endif // IS_U8GLIB_ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #endif // TARGET_LPC1768

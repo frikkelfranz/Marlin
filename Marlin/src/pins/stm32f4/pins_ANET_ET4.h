@@ -23,7 +23,11 @@
 
 #include "env_validate.h"
 
+<<<<<<< HEAD
 #if HOTENDS > 1 || E_STEPPERS > 1
+=======
+#if HAS_MULTI_HOTEND || E_STEPPERS > 1
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #error "Anet ET4 only supports one hotend / E-stepper. Comment out this line to continue."
 #endif
 

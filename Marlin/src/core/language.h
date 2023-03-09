@@ -140,6 +140,10 @@
 #define STR_RESEND                          "Resend: "
 #define STR_UNKNOWN_COMMAND                 "Unknown command: \""
 #define STR_ACTIVE_EXTRUDER                 "Active Extruder: "
+<<<<<<< HEAD
+=======
+#define STR_ERR_FANSPEED                    "Fan speed E"
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 #define STR_PROBE_OFFSET                    "Probe Offset"
 #define STR_SKEW_MIN                        "min_skew_factor: "

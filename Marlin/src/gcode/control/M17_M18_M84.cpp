@@ -136,7 +136,11 @@ void GcodeSuite::M17() {
     }
   }
   else {
+<<<<<<< HEAD
     LCD_MESSAGEPGM(MSG_NO_MOVE);
+=======
+    LCD_MESSAGE(MSG_NO_MOVE);
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     stepper.enable_all_steppers();
   }
 }

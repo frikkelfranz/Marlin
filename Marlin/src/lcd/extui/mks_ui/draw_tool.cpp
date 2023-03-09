@@ -62,7 +62,11 @@ static void event_handler(lv_obj_t *obj, lv_event_t event) {
       #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
         get_gcode_command(AUTO_LEVELING_COMMAND_ADDR, (uint8_t *)public_buf_m);
         public_buf_m[sizeof(public_buf_m) - 1] = 0;
+<<<<<<< HEAD
         queue.inject_P(PSTR(public_buf_m));
+=======
+        queue.inject(public_buf_m);
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
       #else
         uiCfg.leveling_first_time = true;
         lv_draw_manualLevel();

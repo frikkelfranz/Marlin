@@ -317,7 +317,11 @@ class FilamentSensorBase {
             static uint8_t was_out; // = 0
             if (out != TEST(was_out, s)) {
               TBI(was_out, s);
+<<<<<<< HEAD
               SERIAL_ECHOLNPGM_P(PSTR("Filament Sensor "), '0' + s, out ? PSTR(" OUT") : PSTR(" IN"));
+=======
+              SERIAL_ECHOLNF(F("Filament Sensor "), AS_DIGIT(s), out ? F(" OUT") : F(" IN"));
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
             }
           #endif
         }
@@ -352,7 +356,11 @@ class FilamentSensorBase {
           if (ELAPSED(ms, t)) {
             t = millis() + 1000UL;
             LOOP_L_N(i, NUM_RUNOUT_SENSORS)
+<<<<<<< HEAD
               SERIAL_ECHOPGM_P(i ? PSTR(", ") : PSTR("Remaining mm: "), runout_mm_countdown[i]);
+=======
+              SERIAL_ECHOF(i ? F(", ") : F("Remaining mm: "), runout_mm_countdown[i]);
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
             SERIAL_EOL();
           }
         #endif

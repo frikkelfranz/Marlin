@@ -22,12 +22,16 @@
 #pragma once
 
 #ifdef __cplusplus
+<<<<<<< HEAD
   extern "C" { /* C-declarations for C++ */
+=======
+  extern "C" {
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 #endif
 
 void lv_draw_more();
 void lv_clear_more();
 
 #ifdef __cplusplus
-} /* C-declarations for C++ */
+  }
 #endif

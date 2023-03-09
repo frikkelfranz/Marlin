@@ -1,32 +1,39 @@
 #
 # fix_framework_weakness.py
 #
-from os.path import join, isfile
-import shutil
-from pprint import pprint
+import pioutil
+if pioutil.is_pio_build():
 
-Import("env")
+	import shutil
+	from os.path import join, isfile
+	from pprint import pprint
 
-if env.MarlinFeatureIsEnabled("POSTMORTEM_DEBUGGING"):
-    FRAMEWORK_DIR = env.PioPlatform().get_package_dir("framework-arduinoststm32-maple")
-    patchflag_path = join(FRAMEWORK_DIR, ".exc-patching-done")
+	Import("env")
 
-    # patch file only if we didn't do it before
-    if not isfile(patchflag_path):
-        print("Patching libmaple exception handlers")
-        original_file = join(FRAMEWORK_DIR, "STM32F1", "cores", "maple", "libmaple", "exc.S")
-        backup_file = join(FRAMEWORK_DIR, "STM32F1", "cores", "maple", "libmaple", "exc.S.bak")
-        src_file = join("buildroot", "share", "PlatformIO", "scripts", "exc.S")
+	if env.MarlinFeatureIsEnabled("POSTMORTEM_DEBUGGING"):
+		FRAMEWORK_DIR = env.PioPlatform().get_package_dir("framework-arduinoststm32-maple")
+		patchflag_path = join(FRAMEWORK_DIR, ".exc-patching-done")
 
-        assert isfile(original_file) and isfile(src_file)
-        shutil.copyfile(original_file, backup_file)
-        shutil.copyfile(src_file, original_file);
+		# patch file only if we didn't do it before
+		if not isfile(patchflag_path):
+			print("Patching libmaple exception handlers")
+			original_file = join(FRAMEWORK_DIR, "STM32F1", "cores", "maple", "libmaple", "exc.S")
+			backup_file = join(FRAMEWORK_DIR, "STM32F1", "cores", "maple", "libmaple", "exc.S.bak")
+			src_file = join("buildroot", "share", "PlatformIO", "scripts", "exc.S")
 
-        def _touch(path):
-            with open(path, "w") as fp:
-                fp.write("")
+			assert isfile(original_file) and isfile(src_file)
+			shutil.copyfile(original_file, backup_file)
+			shutil.copyfile(src_file, original_file);
 
-        env.Execute(lambda *args, **kwargs: _touch(patchflag_path))
-        print("Done patching exception handler")
+			def _touch(path):
+				with open(path, "w") as fp:
+					fp.write("")
 
+<<<<<<< HEAD
     print("Libmaple modified and ready for post mortem debugging")
+=======
+			env.Execute(lambda *args, **kwargs: _touch(patchflag_path))
+			print("Done patching exception handler")
+
+		print("Libmaple modified and ready for post mortem debugging")
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5

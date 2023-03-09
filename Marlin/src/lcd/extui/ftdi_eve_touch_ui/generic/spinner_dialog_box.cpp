@@ -60,7 +60,11 @@ void SpinnerDialogBox::onRefresh() {
 void SpinnerDialogBox::onRedraw(draw_mode_t) {
 }
 
+<<<<<<< HEAD
 void SpinnerDialogBox::show(FSTR_P message) {
+=======
+void SpinnerDialogBox::show(FSTR_P fstr) {
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   CommandProcessor cmd;
   if (AT_SCREEN(SpinnerDialogBox)) cmd.stop().execute();
   cmd.cmd(CMD_DLSTART)
@@ -68,7 +72,11 @@ void SpinnerDialogBox::show(FSTR_P message) {
      .cmd(CLEAR(true,true,true))
      .cmd(COLOR_RGB(bg_text_enabled))
      .tag(0);
+<<<<<<< HEAD
   draw_text_box(cmd, BTN_POS(1,1), BTN_SIZE(2,3), message, OPT_CENTER, font_large);
+=======
+  draw_text_box(cmd, BTN_POS(1,1), BTN_SIZE(2,3), fstr, OPT_CENTER, font_large);
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   DLCache dlcache(SPINNER_CACHE);
   if (!dlcache.store(SPINNER_DL_SIZE)) {
     SERIAL_ECHO_MSG("CachedScreen::storeBackground() failed: not enough DL cache space");
@@ -86,9 +94,21 @@ void SpinnerDialogBox::hide() {
   GOTO_PREVIOUS();
 }
 
+<<<<<<< HEAD
 void SpinnerDialogBox::enqueueAndWait(FSTR_P message, FSTR_P commands) {
   show(message);
   ExtUI::injectCommands_P((const char*)commands);
+=======
+void SpinnerDialogBox::enqueueAndWait(FSTR_P fstr, FSTR_P commands) {
+  show(fstr);
+  ExtUI::injectCommands(commands);
+  mydata.auto_hide = true;
+}
+
+void SpinnerDialogBox::enqueueAndWait(FSTR_P fstr, char *commands) {
+  show(fstr);
+  ExtUI::injectCommands(commands);
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   mydata.auto_hide = true;
 }
 
@@ -99,7 +119,11 @@ void SpinnerDialogBox::enqueueAndWait(FSTR_P message, char *commands) {
 }
 
 void SpinnerDialogBox::onIdle() {
+<<<<<<< HEAD
   if (mydata.auto_hide && !commandsInQueue() && TERN1(HOST_KEEPALIVE_FEATURE, GcodeSuite::busy_state == GcodeSuite::NOT_BUSY)) {
+=======
+  if (mydata.auto_hide && !commandsInQueue() && TERN1(HOST_KEEPALIVE_FEATURE, gcode.busy_state == gcode.NOT_BUSY)) {
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
     mydata.auto_hide = false;
     hide();
   }

@@ -33,8 +33,13 @@
 #define DEFAULT_MACHINE_NAME BOARD_INFO_NAME
 
 // Avoid conflict with fans and TIMER_TONE
+<<<<<<< HEAD
 #define TEMP_TIMER                             3
 #define STEP_TIMER                             5
+=======
+#define TEMP_TIMER  3
+#define STEP_TIMER  5
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
 
 //
 // EEPROM Emulation
@@ -305,7 +310,11 @@
 #define FIL_RUNOUT_PIN                      PA3
 
 // Alter timing for graphical display
+<<<<<<< HEAD
 #if ENABLED(U8GLIB_ST7920)
+=======
+#if IS_U8GLIB_ST7920
+>>>>>>> 8e03928dc3d482b30dad3e0ac908aff43541aab5
   #define BOARD_ST7920_DELAY_1                96
   #define BOARD_ST7920_DELAY_2                48
   #define BOARD_ST7920_DELAY_3               715
