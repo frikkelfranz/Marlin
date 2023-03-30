@@ -924,7 +924,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 138.50 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 138.50 } 
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1178,7 +1178,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 35, 10, -1.09 }
+#define NOZZLE_TO_PROBE_OFFSET { 35, 10, -1.00 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1612,7 +1612,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 4
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1789,13 +1789,13 @@
  *    +-------------->X     +-------------->X     +-------------->Y
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
-#define SKEW_CORRECTION
+//#define SKEW_CORRECTION
 
 #if ENABLED(SKEW_CORRECTION)
   // Input all length measurements here:
-  #define XY_DIAG_AC 244
-  #define XY_DIAG_BD 243
-  #define XY_SIDE_AD 172.5
+  #define XY_DIAG_AC 209.50
+  #define XY_DIAG_BD 209.50
+  #define XY_SIDE_AD 142
 
   // Or, set the default skew factors directly here
   // to override the above measurements:
@@ -1803,11 +1803,11 @@
 
   //#define SKEW_CORRECTION_FOR_Z
   #if ENABLED(SKEW_CORRECTION_FOR_Z)
-    #define XZ_DIAG_AC 212
-    #define XZ_DIAG_BD 210
-    #define YZ_DIAG_AC 210.5
-    #define YZ_DIAG_BD 211
-    #define YZ_SIDE_AD 149
+    #define XZ_DIAG_AC 211.50
+    #define XZ_DIAG_BD 211.50
+    #define YZ_DIAG_AC 210.50
+    #define YZ_DIAG_BD 211.50
+    #define YZ_SIDE_AD 149.50
     #define XZ_SKEW_FACTOR 0.0
     #define YZ_SKEW_FACTOR 0.0
   #endif

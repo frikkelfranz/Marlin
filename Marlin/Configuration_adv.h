@@ -2330,8 +2330,8 @@
   #define RETRACT_LENGTH                0.79   // (mm) Default retract length (positive value)
   #define RETRACT_LENGTH_SWAP           1.5   // (mm) Default swap retract length (positive value)
   #define RETRACT_FEEDRATE              80   // (mm/s) Default feedrate for retracting
-  #define RETRACT_ZRAISE                0.60   // (mm) Default retract Z-raise
-  #define RETRACT_RECOVER_LENGTH        0.08   // (mm) Default additional recover length (added to retract length on recover)
+  #define RETRACT_ZRAISE                0.80   // (mm) Default retract Z-raise
+  #define RETRACT_RECOVER_LENGTH        0.06   // (mm) Default additional recover length (added to retract length on recover)
   #define RETRACT_RECOVER_LENGTH_SWAP   0   // (mm) Default additional swap recover length (added to retract length on recover from toolchange)
   #define RETRACT_RECOVER_FEEDRATE      80   // (mm/s) Default feedrate for recovering from retraction
   #define RETRACT_RECOVER_FEEDRATE_SWAP 8   // (mm/s) Default feedrate for recovering from swap retraction
@@ -2628,7 +2628,7 @@
  */
 #if HAS_TRINAMIC_CONFIG
 
-  #define HOLD_MULTIPLIER    0.7  // Scales down the holding current from run current
+  #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
 
   /**
    * Interpolate microsteps to 256
@@ -2673,7 +2673,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       1000
+    #define Z_CURRENT       800
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     32
     #define Z_RSENSE          0.11
