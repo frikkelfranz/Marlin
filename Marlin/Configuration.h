@@ -583,7 +583,7 @@
 
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
-#define BANG_MAX 190     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define BANG_MAX 195     // Limits current to nozzle while in bang-bang mode; 255=full current
 #define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 
@@ -596,9 +596,9 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify up to one value per hotend here, according to your setup.
     // If there are fewer values, the last one applies to the remaining hotends.
-    #define DEFAULT_Kp_LIST { 22.62 ,   19.75 , 0 }
-    #define DEFAULT_Ki_LIST { 3.54 ,   1.60  , 0 }
-    #define DEFAULT_Kd_LIST { 36.12 ,  61.06  , 0 }
+    #define DEFAULT_Kp_LIST { 0 ,   19.75 , 0 }
+    #define DEFAULT_Ki_LIST { 0 ,   1.60  , 0 }
+    #define DEFAULT_Kd_LIST { 0 ,  61.06  , 0 }
   #else
     #define DEFAULT_Kp  0
     #define DEFAULT_Ki  0
@@ -1178,7 +1178,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 35, 10, -0.99 }
+#define NOZZLE_TO_PROBE_OFFSET { 35, 10, -1.08 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
