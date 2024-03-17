@@ -596,9 +596,9 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify up to one value per hotend here, according to your setup.
     // If there are fewer values, the last one applies to the remaining hotends.
-    #define DEFAULT_Kp_LIST { 0 ,   19.75 , 0 }
-    #define DEFAULT_Ki_LIST { 0 ,   1.60  , 0 }
-    #define DEFAULT_Kd_LIST { 0 ,  61.06  , 0 }
+    #define DEFAULT_Kp_LIST { 19.57 ,   19.75 , 0 }
+    #define DEFAULT_Ki_LIST { 2.95 ,   1.60  , 0 }
+    #define DEFAULT_Kd_LIST { 32.46 ,  61.06  , 0 }
   #else
     #define DEFAULT_Kp  0
     #define DEFAULT_Ki  0
@@ -924,7 +924,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 138.50 } 
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.88, 80.88, 819.30, 138.50 } 
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1178,14 +1178,14 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 35, 10, -1.07 }
+#define NOZZLE_TO_PROBE_OFFSET { 35, 10, -1.06 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 #define PROBING_MARGIN 10
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (150*60)
+#define XY_PROBE_FEEDRATE (125*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (8*60)
@@ -1378,11 +1378,11 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 212
-#define Y_BED_SIZE 212
+#define X_BED_SIZE 209
+#define Y_BED_SIZE 209
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -26.5
+#define X_MIN_POS -27.00
 #define Y_MIN_POS -16
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
@@ -1789,7 +1789,7 @@
  *    +-------------->X     +-------------->X     +-------------->Y
  *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
  */
-//#define SKEW_CORRECTION
+#define SKEW_CORRECTION
 
 #if ENABLED(SKEW_CORRECTION)
   // Input all length measurements here:
@@ -1801,13 +1801,13 @@
   // to override the above measurements:
   //#define XY_SKEW_FACTOR 0.0
 
-  //#define SKEW_CORRECTION_FOR_Z
+  #define SKEW_CORRECTION_FOR_Z
   #if ENABLED(SKEW_CORRECTION_FOR_Z)
-    #define XZ_DIAG_AC 211.50
-    #define XZ_DIAG_BD 211.50
-    #define YZ_DIAG_AC 210.50
-    #define YZ_DIAG_BD 211.50
-    #define YZ_SIDE_AD 149.50
+    #define XZ_DIAG_AC 142.10
+    #define XZ_DIAG_BD 142.00
+    #define YZ_DIAG_AC 141.60
+    #define YZ_DIAG_BD 142.20
+    #define YZ_SIDE_AD 100.60
     #define XZ_SKEW_FACTOR 0.0
     #define YZ_SKEW_FACTOR 0.0
   #endif
